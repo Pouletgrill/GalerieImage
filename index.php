@@ -16,7 +16,7 @@ if (!isset($_SESSION["user"]))
     {
         //echo($_POST["username"]);
         //echo($_POST["psw"]);
-        if ($_POST["username"]=="123" && $_POST["psw"]=="456")
+        if ($_POST["username"]=="123" && $_POST["psw"]=="456")///////////Pluger a la BD
         {
             $_SESSION["user"] = $_POST["username"];
             header("Location: index.php");

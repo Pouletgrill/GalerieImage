@@ -12,6 +12,6 @@
         }
         ?>
     </div>
-    <p style="font-size: 20px">Check moé ça!</p>
+    <p style="font-size: 25px;font-weight: bold">Check moé ça!</p>
     <hr/>
 </div>
