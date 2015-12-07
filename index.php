@@ -19,6 +19,14 @@ if (!isset($_SESSION["user"]))
         if ($_POST["username"]=="123" && $_POST["psw"]=="456")///////////Pluger a la BD
         {
             $_SESSION["user"] = $_POST["username"];
+            if ($_POST["cbx"])
+            {
+                $_SESSION["loggin_time"] = time();
+            }
+            else
+            {
+                $_SESSION["loggin_time"] = 0;
+            }
             header("Location: index.php");
         }
         else
@@ -32,6 +40,7 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
+    echo($_SESSION["loggin_time"]);
     include_once("galerie.php");
 }
 include_once("footpage.html");
