@@ -9,7 +9,7 @@ echo("
         Mot de passe:<br>
         <input type='password' name='psw'>
         <br><br>
-        <input type='submit' value='Connection'>
+        <input type='submit' value='Connexion'>
     </form>
 </div>
 
