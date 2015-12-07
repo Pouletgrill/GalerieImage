@@ -1,0 +1,17 @@
+<div style="width: 100%;height: auto;background-color: darkseagreen; text-align: center">
+    <hr/>
+    <div style="text-align: right;margin-right: 20px">
+        <?php
+        if (isset($_SESSION["user"]))
+        {
+        echo("
+            <form action='index.php' method='post'>
+            <input type='submit' value='Déconnexion' name='deconnect'>
+            </form>
+            ");
+        }
+        ?>
+    </div>
+    <p style="font-size: 20px">Check moé ça!</p>
+    <hr/>
+</div>
