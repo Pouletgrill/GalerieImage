@@ -1,7 +1,6 @@
 <?php
 echo("
 <div style='text-align: center;width: auto'>
-    <br/>
     <h3>Connexion</h3>
     <form action='index.php' method='post'>
         Identifiant:<br>
@@ -9,6 +8,9 @@ echo("
         <br>
         Mot de passe:<br>
         <input type='password' name='psw'>
+        <br>
+        Rester connecté:
+        <input type='checkbox' name='cbx'>
         <br><br>
         <input type='submit' value='Connexion'>
     </form>
