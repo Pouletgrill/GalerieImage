@@ -20,7 +20,7 @@ if (!isset($_SESSION["user"]))
     {
         //echo($_POST["username"]);
         //echo($_POST["psw"]);
-        if ($_POST["username"]=="123" && $_POST["psw"]=="456")///////////Pluger a la BD
+        if ($Gestion->ValidConnexion($_POST["username"],$_POST["psw"]))
         {
             $_SESSION["user"] = $_POST["username"];
             if ($_POST["cbx"])

@@ -8,10 +8,31 @@ class Gestion
         $this->bdd = $bdd;
     }
 
-    function ValidIdentity($Username)
+    function ValidIdentity($FUsername)
     {
-        //check dans la BD
-        return true;
+            $sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER WHERE User = ?");
+
+            $sqlSelect->bindParam(1,$FUsername, PDO::PARAM_STR);
+
+            $sqlSelect ->execute();
+            $toutlesUsagers =  $sqlSelect->fetchAll();
+            $sqlSelect->closeCursor();
+
+            return  (empty($toutlesUsagers)) ;
+    }
+
+    function ValidConnexion($FUsername,$FPassword)
+    {
+        $sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER WHERE User=? AND Password=? ");
+
+        $sqlSelect->bindParam(1,$FUsername, PDO::PARAM_STR);
+        $sqlSelect->bindParam(2,$FPassword, PDO::PARAM_STR);
+
+        $sqlSelect ->execute();
+        $toutlesUsagers =  $sqlSelect->fetchAll();
+        $sqlSelect->closeCursor();
+
+        return  (!empty($toutlesUsagers)) ;
     }
 
     function AddUserBD($FFullname,$FUsername,$FPassword)
