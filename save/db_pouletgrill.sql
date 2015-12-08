@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 06 Décembre 2015 à 22:59
+-- Généré le :  Mar 08 Décembre 2015 à 21:33
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -32,14 +32,17 @@ CREATE TABLE IF NOT EXISTS `usager` (
   `Password` varchar(50) NOT NULL,
   `Fullname` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `usager`
 --
 
 INSERT INTO `usager` (`Id`, `User`, `Password`, `Fullname`) VALUES
-(1, 'qwerty', 'qwerty', 'qwerty fullname');
+(1, 'admin', 'admin', 'Dieu'),
+(2, 'qwerty', 'qwerty', 'qwerty fullname'),
+(3, 'pouletgrill', 'qwerty123', 'Xavier Brosseau');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
