@@ -1,6 +1,10 @@
 <?php
 session_start();
 include_once("BaseDeDonne.php");
+include_once("BDClass.php");
+$Gestion = new Gestion();
+
+//Ajouter l'entete
 include_once("headpage.php");
 
 if (isset($_POST["deconnect"]) && $_POST["deconnect"])

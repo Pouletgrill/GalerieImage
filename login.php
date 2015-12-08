@@ -1,4 +1,8 @@
 <?php
+include_once("BDClass.php");
+
+$Gestion = new Gestion();
+
 echo("
 <div style='text-align: center;width: auto'>
     <h3>Connexion</h3>
@@ -12,9 +16,51 @@ echo("
         Rester connecté:
         <input type='checkbox' name='cbx'>
         <br><br>
-        <input type='submit' value='Connexion'>
+        <input type='submit' value='Connexion' name='login'>
     </form>
-    <hr>
+    <hr>");
+
+    if (isset($_POST["add"]) && $_POST["add"])
+    {
+        if($_POST["username_n"] == "" ||
+            $_POST["fullname_n"] == "" ||
+            $_POST["psw_n1"] == "" ||
+            $_POST["psw_n2"] == "")
+        {
+            echo("
+            <p style='color: red;text-align: center'>Un des champs est vide</p>
+            ");
+        }
+        else if (!$Gestion->ValidIdentity($_POST["username_n"]))
+        {
+            echo("
+            <p style='color: red;text-align: center'>L'identifiant est deja utilisé</p>
+            ");
+        }
+        else if($_POST["psw_n1"] != $_POST["psw_n2"])
+        {
+            echo("
+            <p style='color: red;text-align: center'>Le mot de passe n'est pas correctement confirmer</p>
+            ");
+        }
+        else
+        {
+            if($Gestion->AddUserBD($_POST["fullname_n"],$_POST["username_n"],$_POST["psw_n1"]))//Conmpte créé
+            {
+                echo("
+            <p style='color: blue;text-align: center'>Compte crée!</p>
+            ");
+                unset($_POST["add"]);
+            }
+            else
+            {
+                echo("
+            <p style='color: red;text-align: center'>Une érreur est survenue lors de la création de l'usager</p>
+            ");
+            }
+        }
+    }
+echo("
     <h3>Pas de compte ? Crée toi en un !</h3>
     <form action='index.php' method='post'>
         Nom complet:<br>
@@ -29,8 +75,7 @@ echo("
         Confirmer mot de passe:<br>
         <input type='password' name='psw_n2'>
         <br><br>
-        <input type='submit' value='Créer'>
+        <input type='submit' value='Créer' name='add'>
     </form>
 </div>
-
 ");
