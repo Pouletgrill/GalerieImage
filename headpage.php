@@ -9,6 +9,14 @@
             <input type='submit' value='Déconnexion' name='deconnect'>
             </form>
             ");
+            if ($_SESSION["user"]=="admin")
+            {
+                echo("
+            <form action='adminPage.php' method=''>
+            <input type='submit' value='Gestion Admin'>
+            </form>
+            ");
+            }
         }
         ?>
     </div>

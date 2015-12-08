@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0);
 session_start();
 include_once("BaseDeDonne.php");
 include_once("BDClass.php");
@@ -23,13 +24,10 @@ if (!isset($_SESSION["user"]))
         if ($Gestion->ValidConnexion($_POST["username"],$_POST["psw"]))
         {
             $_SESSION["user"] = $_POST["username"];
-            if ($_POST["cbx"])
+            if ($_POST["cbx"]) //Créé le timeout
             {
                 $_SESSION["loggin_time"] = time();
-            }
-            else
-            {
-                $_SESSION["loggin_time"] = 0;
+                //Set Cookies
             }
             header("Location: index.php");
         }
@@ -44,7 +42,9 @@ if (!isset($_SESSION["user"]))
 }
 else
 {
-    echo($_SESSION["loggin_time"]);
+   /* if (isset($_SESSION["loggin_time"]))
+        echo($_SESSION["loggin_time"]);
+   */
     include_once("galerie.php");
 }
 include_once("footpage.html");
