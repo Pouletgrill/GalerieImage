@@ -5,6 +5,12 @@ include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $Gestion = new Gestion();
 
+//si qqun a check la box rester connecter
+if(isset($_COOKIE["userCookie"]))
+{
+    $_SESSION["user"]=$_COOKIE["userCookie"];
+}
+
 //Ajouter l'entete
 include_once("headpage.php");
 
@@ -12,6 +18,7 @@ if (isset($_POST["deconnect"]) && $_POST["deconnect"])
 {
     session_destroy();                // supprime le fichier de session
     session_unset();
+    setcookie("userCookie","",-1);
     header("Location: index.php");
 }
 
@@ -28,6 +35,7 @@ if (!isset($_SESSION["user"]))
             {
                 $_SESSION["loggin_time"] = time();
                 //Set Cookies
+                setcookie("userCookie",$_SESSION["user"],(time()+24*60*60));
             }
             header("Location: index.php");
         }
