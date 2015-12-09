@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $Gestion = new Gestion();
@@ -9,8 +10,8 @@ echo("
         <input type='submit' value='Retour'>
     </form>
 </div>");
-//if(/*isset($_SESSION["user"]) && $_SESSION["user"]=="admin"*/true)//Admin operation
-//{
+if(isset($_SESSION["user"]) && $_SESSION["user"]=="admin")//Admin operation
+{
     $TableauUser = $Gestion->SelectUsager();
 
     echo("
@@ -39,12 +40,11 @@ echo("
         ");
     }
 echo("</table>");
-/*}
+}
 else //Acces illégal
 {
-    echo($_SESSION["user"]);
     echo("
-            <p style='color: red;text-align: center'>Accès illégal a cette page, vous n'etes pas un administrateur</p>
+            <p style='color: red;text-align: center'>Accès illégal a cette page, ".$_SESSION["user"]." n'est pas un administrateur</p>
             ");
-}*/
+}
 include_once("footpage.html");
