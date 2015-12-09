@@ -64,16 +64,16 @@ echo("
     <h3>Pas de compte ? Crée toi en un !</h3>
     <form action='index.php' method='post'>
         Nom complet:<br>
-        <input type='text' name='fullname_n'>
+        <input type='text' name='fullname_n' maxlength='50'>
         <br>
         Identifiant:<br>
-        <input type='text' name='username_n'>
+        <input type='text' name='username_n' maxlength='50'>
         <br>
         Mot de passe:<br>
-        <input type='password' name='psw_n1'>
+        <input type='password' name='psw_n1' maxlength='50'>
         <br>
         Confirmer mot de passe:<br>
-        <input type='password' name='psw_n2'>
+        <input type='password' name='psw_n2' maxlength='50'>
         <br><br>
         <input type='submit' value='Créer' name='add'>
     </form>

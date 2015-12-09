@@ -109,6 +109,23 @@ class Gestion
         $sqlDelete->execute();
         $sqlDelete->closeCursor();
     }
+    function GetInfoFromImage($ImageId)
+    {
+        if($sqlSelect = $this->bdd->prepare("SELECT user, date FROM image WHERE IdImage=?"))
+        {
+            $sqlSelect->bindParam(1, $ImageId, PDO::PARAM_STR);
+            $sqlSelect ->execute();
+            $usager =  $sqlSelect->fetchAll();
+            $sqlSelect->closeCursor();
+
+            return  $usager ;
+
+        }
+        else
+        {
+            die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
 
     //Gestion Commentaire
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,6 +145,31 @@ class Gestion
             $sqlInsert->closeCursor();
             return false;
         }
+    }
+    function GetCommentaireFromImage($FIdImage)
+    {
+       if($sqlSelect = $this->bdd->prepare("SELECT user,date,commentaire,IdCommentaire FROM commentaire WHERE IdImage=?"))
+        {
+            $sqlSelect ->bindParam(1, $FIdImage, PDO::PARAM_STR);
+            $sqlSelect ->execute();
+            $toutlesUsagers =  $sqlSelect->fetchAll();
+            $sqlSelect->closeCursor();
+
+            return  $toutlesUsagers ;
+
+        }
+        else
+        {
+            die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
+    function DelCommentaireBd($IdCommentaire)
+    {
+        $sqlDelete = $this->bdd->prepare("DELETE FROM commentaire WHERE IdCommentaire=?");
+
+        $sqlDelete->bindParam(1, $IdCommentaire, PDO::PARAM_STR);
+        $sqlDelete->execute();
+        $sqlDelete->closeCursor();
     }
 }
 
