@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 09 Décembre 2015 à 04:00
+-- Généré le :  Mer 09 Décembre 2015 à 06:12
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,34 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `db_pouletgrill`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `IdCommentaire` bigint(20) NOT NULL AUTO_INCREMENT,
+  `User` varchar(50) NOT NULL,
+  `Date` varchar(50) NOT NULL,
+  `commentaire` int(150) NOT NULL,
+  PRIMARY KEY (`IdCommentaire`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `image`
+--
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `IdImage` varchar(100) NOT NULL,
+  `User` varchar(50) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdImage`),
+  KEY `User` (`User`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -40,7 +68,8 @@ CREATE TABLE IF NOT EXISTS `usager` (
 --
 
 INSERT INTO `usager` (`User`, `password`, `fullname`, `Ipadress`, `timeconnexion`) VALUES
-('admin', 'admin', 'admin', '::1', '2015-12-09 02:14:16');
+('admin', 'admin', 'admin', '::1', '2015-12-09 02:14:16'),
+('pouletgrill', 'chien', 'pouletgrill', '::1', '2015-12-09 04:05:42');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
