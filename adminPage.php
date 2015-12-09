@@ -15,7 +15,7 @@ if(isset($_SESSION["user"]) && $_SESSION["user"]=="admin")//Admin operation
     $TableauUser = $Gestion->SelectUsager();
 
     echo("
-    <table style='border: double'>
+    <table border='1'' style='width:100%'>
     <tr>
         <td>Username</td>
         <td>Password</td>

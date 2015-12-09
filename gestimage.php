@@ -33,7 +33,7 @@ commentaire
 ");
 $tableauCommentaire = $gestion->GetCommentaireFromImage($image);
 echo("
-    <table style='border: double'>
+    <table border='1' style='width:100%'>
     <tr>
         <td>User</td>
         <td>Date</td>

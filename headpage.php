@@ -6,14 +6,19 @@
         {
         echo("
             <form action='index.php' method='post'>
-            <input type='submit' value='Déconnexion' name='deconnect'>
+                <input type='submit' value='Déconnexion' name='deconnect'>
+            </form>
+            ");
+        echo("
+            <form action='profil.php' method='post'>
+                <input type='submit' value='Profil' name='profil'>
             </form>
             ");
             if ($_SESSION["user"]=="admin")
             {
                 echo("
                 <form action='adminPage.php' method='post'>
-                <input type='submit' value='Gestion' name='gestAdmin'>
+                    <input type='submit' value='Gestion' name='gestAdmin'>
                 </form>
                 ");
             }
