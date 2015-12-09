@@ -1,8 +1,8 @@
 <?php
-
+include_once("headpage.php");
 $image = $_GET["i"];
 
-echo '<div class="lediv"><img class="limg" src="./Images/'. $image .'"></div>';
+echo ("<div class='lediv'><img class='limg' src='./Images/". $image ."'></div>");
 
 ?>
 
@@ -27,3 +27,5 @@ echo '<div class="lediv"><img class="limg" src="./Images/'. $image .'"></div>';
 </div>
 </body>
 </html>
+<?php
+include_once("footpage.html");

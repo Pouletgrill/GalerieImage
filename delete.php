@@ -1,4 +1,9 @@
 <?php
+include_once("BaseDeDonne.php");
+include_once("BDClass.php");
+$gestion = new Gestion();
+
+include_once("headpage.php");
 $target_dir = "./Images/";
 $image = $_GET["image"];
 if($image[0] != '.')
@@ -7,6 +12,7 @@ if($image[0] != '.')
     if(unlink($target_dir . $image))
     {
         echo "L'image " . $image . " a été supprimée.";
+        $gestion->DelImageBd($image);
     }
     else
     {
@@ -24,3 +30,5 @@ else
 <br>
 <form action="index.php" method="post">
     <input type="submit" value="Retour à l'accueil">
+<?php
+include_once("footpage.html");

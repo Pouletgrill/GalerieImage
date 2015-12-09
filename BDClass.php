@@ -8,6 +8,8 @@ class Gestion
         $this->bdd = $bdd;
     }
 
+    //Gestion Usager
+    //////////////////////////////////////////////////////////////////////////////////////////////
     function ValidIdentity($FUsername)
     {
             $sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER WHERE User = ?");
@@ -78,6 +80,50 @@ class Gestion
         else
         {
             die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
+
+    //Gestion Image
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    function AddImageBd($fImageName,$fUser,$fDate)
+    {
+        $sqlInsert = $this->bdd->prepare("INSERT INTO image(IdImage,User,date) VALUES(?,?,?)");
+
+        $sqlInsert->bindParam(1, $fImageName, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $fUser, PDO::PARAM_STR);
+        $sqlInsert->bindParam(3, $fDate, PDO::PARAM_STR);
+
+        if ($sqlInsert->execute()) {
+            $sqlInsert->closeCursor();
+            return true;
+        } else {
+            $sqlInsert->closeCursor();
+            return false;
+        }
+    }
+    function DelImageBd($FImageName)
+    {
+        $sqlDelete = $this->bdd->prepare("DELETE FROM Image WHERE IdImage = ?");
+
+        $sqlDelete->bindParam(1, $fImageName, PDO::PARAM_STR);
+        $sqlDelete->execute();
+        $sqlDelete->closeCursor();
+    }
+    function CommenterPhoto($FIdImage,$FUser,$FDate,$FCommentaire)
+    {
+        $sqlInsert = $this->bdd->prepare("INSERT INTO Commentaire(IdImage,User,Date,commentaire) VALUES(?,?,?,?)");
+
+        $sqlInsert->bindParam(1, $FIdImage, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $FUser, PDO::PARAM_STR);
+        $sqlInsert->bindParam(3, $FDate, PDO::PARAM_STR);
+        $sqlInsert->bindParam(4, $FCommentaire, PDO::PARAM_STR);
+
+        if ($sqlInsert->execute()) {
+            $sqlInsert->closeCursor();
+            return true;
+        } else {
+            $sqlInsert->closeCursor();
+            return false;
         }
     }
 }
