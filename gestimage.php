@@ -39,6 +39,8 @@ echo("
 //Boutton Commenter
 echo("
     <form action='comment.php' method='post'>
+        <input type='text' name='commentaireSec' maxlength='150'>
+        <input type='hidden' name='image' value='". $image ."'>
         <input type='submit' value='Commenter'>
     </form>
 ");

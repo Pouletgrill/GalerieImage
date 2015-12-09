@@ -109,6 +109,9 @@ class Gestion
         $sqlDelete->execute();
         $sqlDelete->closeCursor();
     }
+
+    //Gestion Commentaire
+    //////////////////////////////////////////////////////////////////////////////////////////////
     function CommenterPhoto($FIdImage,$FUser,$FDate,$FCommentaire)
     {
         $sqlInsert = $this->bdd->prepare("INSERT INTO Commentaire(IdImage,User,Date,commentaire) VALUES(?,?,?,?)");

@@ -29,6 +29,6 @@ else
 <br>
 <br>
 <form action="index.php" method="post">
-    <input type="submit" value="Retour à l'accueil">
+    <input type="submit" value="Retour">
 <?php
 include_once("footpage.html");
