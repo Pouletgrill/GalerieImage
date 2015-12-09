@@ -8,11 +8,14 @@ $fichiers = scandir($repertoire);
 $compteur = 0;
 ?>
 
+
+<html>
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+<body>
 <table class="vision">
-    <?php
+        <?php
     if ($fichiers !== FALSE)
     {
         for ($i = 0; $i < sizeof($fichiers); $i++)
@@ -52,7 +55,11 @@ $compteur = 0;
         <td>
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 Fichier : <input name="fichier" type="file">
-                <input type="submit" value="Envoyer le fichier"></form>
+                <input type="submit" value="Envoyer le fichier">
         </td>
     </tr>
 </table>
+
+</form>
+</body>
+</html>

@@ -35,14 +35,16 @@ class Gestion
         return  (!empty($toutlesUsagers)) ;
     }
 
-    function AddUserBD($FFullname,$FUsername,$FPassword)
+    function AddUserBD($FFullname,$FUsername,$FPassword,$FIpAdress,$FDate)
     {
-        if($sqlInsert = $this->bdd->prepare("INSERT INTO usager(User,Password,Fullname) VALUES(?,?,?)"))
+        if($sqlInsert = $this->bdd->prepare("INSERT INTO usager(User,Password,Fullname,Ipadress,timeconnexion) VALUES(?,?,?,?,?)"))
         {
 
             $sqlInsert->bindParam(1,$FUsername, PDO::PARAM_STR);
             $sqlInsert->bindParam(2,$FPassword, PDO::PARAM_STR);
             $sqlInsert->bindParam(3,$FFullname, PDO::PARAM_STR);
+            $sqlInsert->bindParam(4,$FIpAdress, PDO::PARAM_STR);
+            $sqlInsert->bindParam(5,$FDate, PDO::PARAM_STR);
 
             if($sqlInsert->execute())
             {
@@ -54,6 +56,24 @@ class Gestion
                 $sqlInsert->closeCursor();
                 return false;
             }
+        }
+        else
+        {
+            die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
+
+    function SelectUsager()
+    {
+
+        if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER"))
+        {
+            $sqlSelect ->execute();
+            $toutlesUsagers =  $sqlSelect->fetchAll();
+            $sqlSelect->closeCursor();
+
+            return  $toutlesUsagers ;
+
         }
         else
         {

@@ -33,7 +33,6 @@ if (!isset($_SESSION["user"]))
             $_SESSION["user"] = $_POST["username"];
             if ($_POST["cbx"]) //Créé le timeout
             {
-                $_SESSION["loggin_time"] = time();
                 //Set Cookies
                 setcookie("userCookie",$_SESSION["user"],(time()+24*60*60));
             }

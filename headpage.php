@@ -12,10 +12,10 @@
             if ($_SESSION["user"]=="admin")
             {
                 echo("
-            <form action='adminPage.php' method=''>
-            <input type='submit' value='Gestion Admin'>
-            </form>
-            ");
+                <form action='adminPage.php' method='post'>
+                <input type='submit' value='Gestion' name='gestAdmin'>
+                </form>
+                ");
             }
         }
         ?>
