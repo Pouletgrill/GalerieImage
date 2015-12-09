@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 09 Décembre 2015 à 06:12
+-- Généré le :  Mer 09 Décembre 2015 à 19:26
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `User` varchar(50) NOT NULL,
   `Date` varchar(50) NOT NULL,
   `commentaire` int(150) NOT NULL,
-  PRIMARY KEY (`IdCommentaire`)
+  PRIMARY KEY (`IdCommentaire`),
+  KEY `User` (`User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -70,6 +71,22 @@ CREATE TABLE IF NOT EXISTS `usager` (
 INSERT INTO `usager` (`User`, `password`, `fullname`, `Ipadress`, `timeconnexion`) VALUES
 ('admin', 'admin', 'admin', '::1', '2015-12-09 02:14:16'),
 ('pouletgrill', 'chien', 'pouletgrill', '::1', '2015-12-09 04:05:42');
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `UserIdCommentaireFK` FOREIGN KEY (`User`) REFERENCES `usager` (`User`);
+
+--
+-- Contraintes pour la table `image`
+--
+ALTER TABLE `image`
+  ADD CONSTRAINT `UserIdImageFK` FOREIGN KEY (`User`) REFERENCES `usager` (`User`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
