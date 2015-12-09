@@ -67,9 +67,25 @@ class Gestion
 
     function SelectUsager()
     {
-
         if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER"))
         {
+            $sqlSelect ->execute();
+            $toutlesUsagers =  $sqlSelect->fetchAll();
+            $sqlSelect->closeCursor();
+
+            return  $toutlesUsagers ;
+
+        }
+        else
+        {
+            die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
+    function SelectUsagerInFo($fUser)
+    {
+        if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER WHERE user=?"))
+        {
+            $sqlSelect ->bindParam(1, $fUser, PDO::PARAM_STR);
             $sqlSelect ->execute();
             $toutlesUsagers =  $sqlSelect->fetchAll();
             $sqlSelect->closeCursor();
