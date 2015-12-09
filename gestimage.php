@@ -1,31 +1,54 @@
+<head>
+    <link rel='stylesheet' type='text/css' href='styles.css'>
+</head>
 <?php
 include_once("headpage.php");
 $image = $_GET["i"];
 
+//Section Image
 echo ("<div class='lediv'><img class='limg' src='./Images/". $image ."'></div>");
 
-?>
-
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
+//Sections Commentaire
+echo("
 <hr>
-<div class="delete">
-    </form>
-    <?php
-    echo '<form action="delete.php" method="get">';
-    echo '<input type="hidden" name="image" value="'. $image .'">';
-    echo '<input type="submit" value="Delete">';
-    echo '</form>';?>
+<div class='comment'>
+commentaire
+");
 
-    <form action="index.php" method="post">
-        <input type="submit" value="Retour à l'accueil">
+    //Foreach commentaire
 
-
+echo("
 </div>
-</body>
-</html>
-<?php
+");
+
+
+
+
+//////////////////////////////
+echo("<hr>
+<div class='delete'>
+");
+//Boutton Delete
+echo("
+    <form action='delete.php' method='get'>
+        <input type='hidden' name='image' value='". $image ."'>
+        <input type='submit' value='Supprimer'>
+    </form>
+");
+
+//Boutton Commenter
+echo("
+    <form action='comment.php' method='post'>
+        <input type='submit' value='Commenter'>
+    </form>
+");
+
+//Boutton Retour
+echo("
+    <form action='index.php' method='post'>
+        <input type='submit' value='Retour'>
+    </form>
+    </div>
+");
+
 include_once("footpage.html");

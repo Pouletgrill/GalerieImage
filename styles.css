@@ -39,4 +39,14 @@
     height: auto;
     display: table;
     margin: 0 auto;
+	text-align: center;
+}
+.comment
+{
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    display: table;
+    margin: 0 auto;
+	text-align: center;
 }
