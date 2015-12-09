@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 08 Décembre 2015 à 21:33
+-- Généré le :  Mer 09 Décembre 2015 à 04:00
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -27,22 +27,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `usager` (
-  `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `User` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
-  `Fullname` varchar(100) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `password` varchar(50) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `Ipadress` varchar(20) NOT NULL,
+  `timeconnexion` datetime NOT NULL,
+  PRIMARY KEY (`User`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `usager`
 --
 
-INSERT INTO `usager` (`Id`, `User`, `Password`, `Fullname`) VALUES
-(1, 'admin', 'admin', 'Dieu'),
-(2, 'qwerty', 'qwerty', 'qwerty fullname'),
-(3, 'pouletgrill', 'qwerty123', 'Xavier Brosseau');
-
+INSERT INTO `usager` (`User`, `password`, `fullname`, `Ipadress`, `timeconnexion`) VALUES
+('admin', 'admin', 'admin', '::1', '2015-12-09 02:14:16');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
