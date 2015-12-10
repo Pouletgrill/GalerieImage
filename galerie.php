@@ -55,7 +55,8 @@ $compteur = 0;
     <tr>
         <td>
             <form action="upload.php" method="post" enctype="multipart/form-data">
-                Fichier : <input name="fichier" type="file">
+                Fichier : <input name="fichier" type="file"><br>
+                Titre : <input type="text" name="TitreImage" value="" maxlength="50">
                 <input type="submit" value="Envoyer le fichier"></form>
         </td>
     </tr>

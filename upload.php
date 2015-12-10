@@ -47,7 +47,7 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fichier"]["tmp_name"],$target_dir.$RandUniqId /*$target_file*/)) //Si ca marche!
     {
         echo "Le fichier ". basename( $_FILES["fichier"]["name"]). " a été téléversé.";
-        $Gestion->AddImageBd($RandUniqId,$_SESSION["user"],date("Y-m-d H:i:s"),basename($_FILES["fichier"]["name"]));
+        $Gestion->AddImageBd($RandUniqId,$_SESSION["user"],date("Y-m-d H:i:s"),$_POST["TitreImage"]);
         //echo($_SESSION["user"]);
     } else {
         echo "Désolé. Il y a eu un erreur avec le fichier.";
