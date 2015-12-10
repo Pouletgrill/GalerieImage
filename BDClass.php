@@ -143,12 +143,13 @@ class Gestion
         $sqlInsert3->closeCursor();
         $sqlInsert3->closeCursor();
     }
-    function DateRefresh($FUser,$FDatetime)
+    function DateRefresh($FUser,$FDatetime,$FIP)
     {
-        $sqlInsert = $this->bdd->prepare("UPDATE Usager SET timeconnexion=? WHERE User=?");
+        $sqlInsert = $this->bdd->prepare("UPDATE Usager SET timeconnexion=?,Ipadress=? WHERE User=?");
 
         $sqlInsert->bindParam(1, $FDatetime, PDO::PARAM_STR);
-        $sqlInsert->bindParam(2, $FUser, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $FIP, PDO::PARAM_STR);
+        $sqlInsert->bindParam(3, $FUser, PDO::PARAM_STR);
 
         if ($sqlInsert->execute()) {
             $sqlInsert->closeCursor();
