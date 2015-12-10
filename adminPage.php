@@ -23,6 +23,7 @@ if((isset($_SESSION["user"]) && $_SESSION["user"]=="admin"))//Admin operation
     //Affichage de tous
     echo("
     <h1>Gestion des usager</h1>
+    <h3>Les 10 derniers usager connecté sont en jaune</h3>
     <table border='1'>
     <tr>
         <td>Username</td>

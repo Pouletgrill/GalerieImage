@@ -45,7 +45,7 @@ echo("
         }
         else
         {
-            if($Gestion->AddUserBD($_POST["fullname_n"],$_POST["username_n"],$_POST["psw_n1"],get_client_ip(),date("Y-m-d H:i:s")))//Conmpte créé
+            if($Gestion->AddUserBD($_POST["fullname_n"],$_POST["username_n"],$_POST["psw_n1"],get_client_ip(),"2000-12-12 23:23:23"))//Conmpte créé
             {
                 echo("
             <p style='color: blue;text-align: center'>Compte crée!</p>

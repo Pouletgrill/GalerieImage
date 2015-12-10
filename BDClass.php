@@ -64,7 +64,7 @@ class Gestion
     }
     function SelectUsager()
     {
-        if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER"))
+        if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER ORDER BY timeconnexion DESC"))
         {
             $sqlSelect ->execute();
             $toutlesUsagers =  $sqlSelect->fetchAll();

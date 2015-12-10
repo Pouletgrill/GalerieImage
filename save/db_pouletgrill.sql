@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 10 Décembre 2015 à 05:00
+-- Généré le :  Jeu 10 Décembre 2015 à 21:27
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -29,22 +29,13 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `IdCommentaire` bigint(20) NOT NULL AUTO_INCREMENT,
   `User` varchar(50) NOT NULL,
-  `Date` varchar(50) NOT NULL,
+  `Date` datetime NOT NULL,
   `commentaire` varchar(150) NOT NULL,
   `IDImage` varchar(50) NOT NULL,
   PRIMARY KEY (`IdCommentaire`),
   KEY `User` (`User`),
   KEY `IDImage` (`IDImage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Contenu de la table `commentaire`
---
-
-INSERT INTO `commentaire` (`IdCommentaire`, `User`, `Date`, `commentaire`, `IDImage`) VALUES
-(13, 't', '2015-12-10 04:14:27', 'gg', 'img_5668edc37aa3d'),
-(14, 't', '2015-12-10 04:14:33', 'dsgsdgds', 'img_5668edcc9fb71'),
-(15, 't', '2015-12-10 04:14:54', 'such beau', 'img_5668ee26e5ab6');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -55,19 +46,10 @@ INSERT INTO `commentaire` (`IdCommentaire`, `User`, `Date`, `commentaire`, `IDIm
 CREATE TABLE IF NOT EXISTS `image` (
   `IdImage` varchar(100) NOT NULL,
   `User` varchar(50) NOT NULL,
-  `date` varchar(50) NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`IdImage`),
   KEY `User` (`User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `image`
---
-
-INSERT INTO `image` (`IdImage`, `User`, `date`) VALUES
-('img_5668edc37aa3d', 'kilo', '2015-12-10 04:13:07'),
-('img_5668edcc9fb71', 'kilo', '2015-12-10 04:13:16'),
-('img_5668ee26e5ab6', 't', '2015-12-10 04:14:46');
 
 -- --------------------------------------------------------
 
@@ -89,11 +71,19 @@ CREATE TABLE IF NOT EXISTS `usager` (
 --
 
 INSERT INTO `usager` (`User`, `password`, `fullname`, `Ipadress`, `timeconnexion`) VALUES
-('admin', 'admin', 'admin', '::1', '2015-12-09 02:14:16'),
-('kilo', 'octet', 'kilo', '::1', '2015-12-10 04:12:49'),
-('pouletgrill', 'chien', 'pouletgrill', '::1', '2015-12-09 04:05:42'),
-('q', 'q', 'q', '::1', '2015-12-10 04:41:56'),
-('t', 't', 't', '::1', '2015-12-10 04:14:19');
+('aa', 'aa', 'aa', '::1', '2000-12-12 23:23:23'),
+('admin', 'admin', 'Le Dieu Du Vinaigre', '::1', '2015-12-10 21:26:34'),
+('Chakrar', 'asdf', 'Charkrar', '::1', '2015-12-10 21:23:01'),
+('Charle', 'charlie', 'Charlie Laploante', '::1', '2015-12-10 21:19:52'),
+('df', 'df', 'df', '::1', '2015-12-10 21:23:53'),
+('ge', 'ge', 'ge', '::1', '2015-12-10 21:23:59'),
+('pouletgrill', 'qwerty123', 'Xavier Brosseau', '::1', '2015-12-10 21:21:44'),
+('q', 'q', 'q', '::1', '2015-12-10 21:26:17'),
+('qwerty', 'qwerty', 'qwerty', '::1', '2015-12-10 21:19:32'),
+('singe', 'maqake', 'filamon', '::1', '2015-12-10 21:19:06'),
+('t', 't', 't', '::1', '2015-12-10 21:14:58'),
+('Vazelyne', 'chien', 'Vazelyne', '::1', '2015-12-10 21:15:14'),
+('YOUPI', 'singe', 'youpi', '::1', '2015-12-10 21:19:20');
 
 --
 -- Contraintes pour les tables exportées
