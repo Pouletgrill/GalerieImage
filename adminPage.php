@@ -10,12 +10,19 @@ echo("
         <input type='submit' value='Retour'>
     </form>
 </div>");
-if(isset($_SESSION["user"]) && $_SESSION["user"]=="admin")//Admin operation
+if((isset($_SESSION["user"]) && $_SESSION["user"]=="admin"))//Admin operation
 {
     $TableauUser = $Gestion->SelectUsager();
 
+    if(isset($_POST["Desinscription"]))
+    {
+        $Gestion->DeleteUser($_POST["Desinscription"]);
+        header("location: adminPage.php");
+    }
+
     echo("
-    <table border='1'' style='width:100%'>
+    <h1>Gestion des usager</h1>
+    <table border='1'>
     <tr>
         <td>Username</td>
         <td>Password</td>
@@ -33,8 +40,11 @@ if(isset($_SESSION["user"]) && $_SESSION["user"]=="admin")//Admin operation
             <td>".$TableauUser[$i][2]."</td>
             <td>".$TableauUser[$i][3]."</td>
             <td>".$TableauUser[$i][4]."</td>
-            <form action='index.php' method='post'>
+            <form action='adminPage.php' method='post'>
                 <td><button name='Desinscription' value='".$TableauUser[$i][0]."' >Supprimer</button></td>
+            </form>
+            <form action='profil.php' method='post'>
+                <td><button name='adminProfilRequest' value='".$TableauUser[$i][0]."' >Profil</button></td>
             </form>
         </tr>
         ");

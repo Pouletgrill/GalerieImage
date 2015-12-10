@@ -22,7 +22,6 @@ class Gestion
 
             return  (empty($toutlesUsagers)) ;
     }
-
     function ValidConnexion($FUsername,$FPassword)
     {
         $sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER WHERE User=? AND Password=? ");
@@ -36,7 +35,6 @@ class Gestion
 
         return  (!empty($toutlesUsagers)) ;
     }
-
     function AddUserBD($FFullname,$FUsername,$FPassword,$FIpAdress,$FDate)
     {
         if($sqlInsert = $this->bdd->prepare("INSERT INTO usager(User,Password,Fullname,Ipadress,timeconnexion) VALUES(?,?,?,?,?)"))
@@ -64,7 +62,6 @@ class Gestion
             die("Erreur : MYSQL statement n'a pas pu être préparé");
         }
     }
-
     function SelectUsager()
     {
         if($sqlSelect = $this->bdd->prepare("SELECT * FROM USAGER"))
@@ -96,6 +93,69 @@ class Gestion
         else
         {
             die("Erreur : MYSQL statement n'a pas pu être préparé");
+        }
+    }
+    function UpdatePswd($fUser,$FPswd)
+    {
+        $sqlInsert = $this->bdd->prepare("UPDATE Usager SET password=? WHERE User=?");
+
+        $sqlInsert->bindParam(1, $FPswd, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $fUser, PDO::PARAM_STR);
+
+        if ($sqlInsert->execute()) {
+            $sqlInsert->closeCursor();
+            return true;
+        } else {
+            $sqlInsert->closeCursor();
+            return false;
+        }
+    }
+    function UpdateFullname($fUser,$FFullname)
+    {
+        $sqlInsert = $this->bdd->prepare("UPDATE Usager SET Fullname=? WHERE User=?");
+
+        $sqlInsert->bindParam(1, $FFullname, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $fUser, PDO::PARAM_STR);
+
+        if ($sqlInsert->execute()) {
+            $sqlInsert->closeCursor();
+            return true;
+        } else {
+            $sqlInsert->closeCursor();
+            return false;
+        }
+    }
+    function DeleteUser($FUser)
+    {
+        /*$sqlInsert1 = $this->bdd->prepare("DELETE FROM Commentaire WHERE User=?");
+        $sqlInsert1->bindParam(1, $FUser, PDO::PARAM_STR);
+        $sqlInsert1->execute();
+        $sqlInsert1->closeCursor();
+
+        $sqlInsert2 = $this->bdd->prepare("DELETE FROM image WHERE User=?");
+        $sqlInsert2->bindParam(1, $FUser, PDO::PARAM_STR);
+        $sqlInsert2->execute();
+        $sqlInsert2->closeCursor();*/
+
+        $sqlInsert3 = $this->bdd->prepare("DELETE FROM Usager WHERE User=?");
+        $sqlInsert3->bindParam(1, $FUser, PDO::PARAM_STR);
+        $sqlInsert3->execute();
+        $sqlInsert3->closeCursor();
+        $sqlInsert3->closeCursor();
+    }
+    function DateRefresh($FUser,$FDatetime)
+    {
+        $sqlInsert = $this->bdd->prepare("UPDATE Usager SET timeconnexion=? WHERE User=?");
+
+        $sqlInsert->bindParam(1, $FDatetime, PDO::PARAM_STR);
+        $sqlInsert->bindParam(2, $FUser, PDO::PARAM_STR);
+
+        if ($sqlInsert->execute()) {
+            $sqlInsert->closeCursor();
+            return true;
+        } else {
+            $sqlInsert->closeCursor();
+            return false;
         }
     }
 

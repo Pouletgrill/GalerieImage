@@ -1,4 +1,8 @@
 <?php
+include_once("BaseDeDonne.php");
+include_once("BDClass.php");
+$gestion = new Gestion();
+
 // exemple avec le répertoire courant
 $repertoire = "./Images";
 
@@ -18,7 +22,7 @@ $compteur = 0;
         for ($i = 0; $i < sizeof($fichiers); $i++)
         {
             $nomFichier = $fichiers[$i];
-            if ($nomFichier[0] != ".")
+            if ($nomFichier[0] != "." && !empty($gestion->GetInfoFromImage($nomFichier)))
             {
                 if($compteur == 5)
                 {

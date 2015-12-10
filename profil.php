@@ -13,36 +13,41 @@ else
     $user = $_SESSION["user"];
 }
 
-
 include_once("headpage.php");
 
 if(isset($_SESSION["user"]))
 {
-    if ($_SESSION["user"] == "admin" && isset($_SESSION["SelectedUser"]))
+    if ($_SESSION["user"] == "admin" && isset($_POST["adminProfilRequest"]) || isset($_SESSION["adminRequest"]))
     {
-        $user = $_SESSION["SelectedUser"];
+        if (!isset($_SESSION["adminRequest"]))
+        {
+            $user = $_POST["adminProfilRequest"];
+            $_SESSION["adminRequest"] = $user;
+        }
+        else
+        {
+            $user = $_SESSION["adminRequest"];
+        }
     }
     else
     {
         $user = $_SESSION["user"];
     }
+
+    PostGestion($gestion,$user);
+
     $usagerInfo = $gestion->SelectUsagerInFo($user);
     echo("
         <h1>Profil de ".$user."</h1>
-        Nom Usager (Ne pas oublier de changer le user session si il doit changer)
-        <form action='profil.php' method='post'>
-        <input type='text' name='commentaireSec' value=".$usagerInfo[0][0]." maxlength='50' minlength=5>
-        <input type='submit' value='Modifier'>
-        </form>
         Mot De Passe
         <form action='profil.php' method='post'>
-        <input type='password' name='commentaireSec' value=".$usagerInfo[0][1]." maxlength='50' minlength=5>
-        <input type='submit' value='Modifier'>
+        <input type='password' name='Modif_Password' value='' maxlength='50'>
+        <input type='submit' value='Modifier' name='Submit_Password'>
         </form>
         Nom complet
         <form action='profil.php' method='post'>
-        <input type='text' name='commentaireSec' value=".$usagerInfo[0][2]." maxlength='100' minlength=5>
-        <input type='submit' value='Modifier'>
+        <input type='text' name='Modif_Fullname' value='".$usagerInfo[0][2]."' maxlength='100'>
+        <input type='submit' value='Modifier' name='Submit_Fullname'>
         </form>
     ");
 }
@@ -59,3 +64,33 @@ else
 }
 
 include_once("footpage.html");
+
+function PostGestion($fgestion,$fuser)
+{
+    if(isset($_POST["Submit_Password"]) && $_POST["Submit_Password"])
+    {
+        if(!empty($_POST["Modif_Password"]))
+        {
+            $fgestion->UpdatePswd($fuser,$_POST["Modif_Password"]);
+        }
+        else
+        {
+            echo("
+            <p style='color: red'>Le mot de passe est vide</p>
+            ");
+        }
+    }
+    if(isset($_POST["Submit_Fullname"]) && $_POST["Submit_Fullname"])
+    {
+        if(!empty($_POST["Modif_Fullname"]))
+        {
+            $fgestion->UpdateFullname($fuser,$_POST["Modif_Fullname"]);
+        }
+        else
+        {
+            echo("
+            <p style='color: red'>Le nom complet est vide</p>
+            ");
+        }
+    }
+}

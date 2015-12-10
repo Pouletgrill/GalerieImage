@@ -6,6 +6,11 @@
         {
         echo("
             <form action='index.php' method='post'>
+                <input type='submit' value='acceuil'>
+            </form>
+            ");
+        echo("
+            <form action='index.php' method='post'>
                 <input type='submit' value='Déconnexion' name='deconnect'>
             </form>
             ");

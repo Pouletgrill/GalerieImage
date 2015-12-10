@@ -9,9 +9,12 @@ $gestion = new Gestion();
 
 include_once("headpage.php");
 $image = $_GET["i"];
-
-$imageUser = $gestion->GetInfoFromImage($image)[0][0];
-$imageDate = $gestion->GetInfoFromImage($image)[0][1];
+$ImageInfos=0;
+if(($ImageInfos = $gestion->GetInfoFromImage($image)))
+{
+    $imageUser = $ImageInfos[0][0];
+    $imageDate = $ImageInfos[0][1];
+}
 
 gestionPost($gestion);
 //Section Image

@@ -31,6 +31,7 @@ if (!isset($_SESSION["user"]))
         if ($Gestion->ValidConnexion($_POST["username"],$_POST["psw"]))
         {
             $_SESSION["user"] = $_POST["username"];
+            $Gestion->DateRefresh($_SESSION["user"],date("Y-m-d H:i:s"));
             if ($_POST["cbx"]) //Créé le timeout
             {
                 //Set Cookies
