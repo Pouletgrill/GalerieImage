@@ -1,6 +1,3 @@
--Ip marche pas
 -date pas correct (changer varchar en Datetime)
--date timezone
--admin tableau user 10 derniers
+-admin tableau user 10 derniers 
 -server test
--Delete image marche pas
