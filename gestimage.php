@@ -14,6 +14,7 @@ if(($ImageInfos = $gestion->GetInfoFromImage($image)))
 {
     $imageUser = $ImageInfos[0][0];
     $imageDate = $ImageInfos[0][1];
+    $imageTitre =$ImageInfos[0][2];
 }
 
 gestionPost($gestion);
@@ -23,6 +24,7 @@ echo ("
     <img class='limg' src='./Images/". $image ."'>
 </div>
 <div class='comment'>
+    <h2>".$imageTitre."</h2>
     <b>Auteur: ".$imageUser."</b>
     <br>
     Date de Création: ".$imageDate."

@@ -162,13 +162,14 @@ class Gestion
 
     //Gestion Image
     //////////////////////////////////////////////////////////////////////////////////////////////
-    function AddImageBd($fImageName,$fUser,$fDate)
+    function AddImageBd($fImageName,$fUser,$fDate,$fTitre)
     {
-        $sqlInsert = $this->bdd->prepare("INSERT INTO image(IdImage,User,date) VALUES(?,?,?)");
+        $sqlInsert = $this->bdd->prepare("INSERT INTO image(IdImage,User,date,TitreImage) VALUES(?,?,?,?)");
 
         $sqlInsert->bindParam(1, $fImageName, PDO::PARAM_STR);
         $sqlInsert->bindParam(2, $fUser, PDO::PARAM_STR);
         $sqlInsert->bindParam(3, $fDate, PDO::PARAM_STR);
+        $sqlInsert->bindParam(4, $fTitre, PDO::PARAM_STR);
 
         if ($sqlInsert->execute()) {
             $sqlInsert->closeCursor();
@@ -188,7 +189,7 @@ class Gestion
     }
     function GetInfoFromImage($ImageId)
     {
-        if($sqlSelect = $this->bdd->prepare("SELECT user, date FROM image WHERE IdImage=?"))
+        if($sqlSelect = $this->bdd->prepare("SELECT user, date, TitreImage FROM image WHERE IdImage=?"))
         {
             $sqlSelect->bindParam(1, $ImageId, PDO::PARAM_STR);
             $sqlSelect ->execute();
