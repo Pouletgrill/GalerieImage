@@ -31,7 +31,7 @@ if (!isset($_SESSION["user"]))
         if ($Gestion->ValidConnexion($_POST["username"],$_POST["psw"]))
         {
             $_SESSION["user"] = $_POST["username"];
-            $Gestion->DateRefresh($_SESSION["user"],date("Y-m-d H:i:s"),get_client_ip());
+            $Gestion->DateRefresh($_SESSION["user"],date("Y-m-d H:i:s"),get_client_ip2());
             if ($_POST["cbx"]) //Créé le timeout
             {
                 //Set Cookies
@@ -57,7 +57,7 @@ else
 }
 include_once("footpage.html");
 
-function get_client_ip() {
+function get_client_ip2() {
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
         $ipaddress = getenv('HTTP_CLIENT_IP');

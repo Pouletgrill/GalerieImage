@@ -6,7 +6,7 @@
         {
         echo("
             <form action='index.php' method='post'>
-                <input type='submit' value='acceuil'>
+                <input type='submit' value='accueil'>
             </form>
             ");
         echo("
