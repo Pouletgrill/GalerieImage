@@ -20,6 +20,7 @@ if((isset($_SESSION["user"]) && $_SESSION["user"]=="admin"))//Admin operation
         header("location: adminPage.php");
     }
 
+    //Affichage de tous
     echo("
     <h1>Gestion des usager</h1>
     <table border='1'>
@@ -34,7 +35,10 @@ if((isset($_SESSION["user"]) && $_SESSION["user"]=="admin"))//Admin operation
     for($i = 0; $i < count($TableauUser);$i++) //TABLEAU
     {
         echo("
-        <tr>
+        <tr ");
+        if ($i <10)
+            echo("style='background-color: aqua'");
+        echo(">
             <td>".$TableauUser[$i][0]."</td>
             <td>".$TableauUser[$i][1]."</td>
             <td>".$TableauUser[$i][2]."</td>
