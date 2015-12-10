@@ -39,15 +39,15 @@ if(isset($_SESSION["user"]))
     $usagerInfo = $gestion->SelectUsagerInFo($user);
     echo("
         <h1>Profil de ".$user."</h1>
-        Mot De Passe
-        <form action='profil.php' method='post'>
-        <input type='password' name='Modif_Password' value='' maxlength='50'>
-        <input type='submit' value='Modifier' name='Submit_Password'>
-        </form>
         Nom complet
         <form action='profil.php' method='post'>
         <input type='text' name='Modif_Fullname' value='".$usagerInfo[0][2]."' maxlength='100'>
         <input type='submit' value='Modifier' name='Submit_Fullname'>
+        </form>
+        Mot De Passe
+        <form action='profil.php' method='post'>
+        <input type='password' name='Modif_Password' value='' maxlength='50'>
+        <input type='submit' value='Modifier' name='Submit_Password'>
         </form>
     ");
 }

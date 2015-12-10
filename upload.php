@@ -4,55 +4,110 @@ include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $Gestion = new Gestion();
 date_default_timezone_set('America/Montreal');
-
 include_once("headpage.php");
 
 $target_dir = "./Images/";
-$target_file = $target_dir . basename($_FILES["fichier"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fichier"]["tmp_name"]);
-    if($check !== false) {
-        echo "Le fichier est une image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "Le fichier n'est pas une image.";
-        $uploadOk = 0;
+
+if(isset($_FILES['fichier'])) {
+    $errors     = array();
+    $maxsize    = 3145728;
+    $acceptable = array(
+        'image/jpeg',
+        'image/jpg',
+        'image/gif',
+        'image/png'
+    );
+
+    if($_FILES['fichier']['size'] >= $maxsize) {
+        $errors[] = 'Ce fichier est trop large.';
     }
-}
-// Check if file already exists
-if (file_exists($target_file) && $uploadOk == 1) {
-    echo "Désolé. Ce fichier existe déjà.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fichier"]["size"] > 4000000 && $uploadOk == 1) {
-    echo "Désolé. Ce ficier est trop large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"  && $uploadOk == 1) {
-    echo "Désolé. Seulement les fichiers JPG, JPEG, PNG & GIF sont acceptés.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Désolé. Votre fichier n'as pas été téléversé.";
-// if everything is ok, try to upload file
-} else {
-    $RandUniqId = uniqid("img_",false);
-    if (move_uploaded_file($_FILES["fichier"]["tmp_name"],$target_dir.$RandUniqId /*$target_file*/)) //Si ca marche!
+
+    if($_FILES["fichier"]["size"] == 0){
+        $errors[] = 'Votre fichier est vide.';
+    }
+
+    if(!in_array($_FILES['fichier']['type'], $acceptable)){// != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        $errors[] = "Seulement les fichiers JPG, JPEG, PNG & GIF sont acceptés.";
+    }
+
+    if(count($errors) === 0) {
+        $RandUniqId = uniqid("img_",false);
+    if (move_uploaded_file($_FILES["fichier"]["tmp_name"],$target_dir.$RandUniqId)) //Si ca marche!
     {
         echo "Le fichier ". basename( $_FILES["fichier"]["name"]). " a été téléversé.";
         $Gestion->AddImageBd($RandUniqId,$_SESSION["user"],date("Y-m-d H:i:s"),$_POST["TitreImage"]);
         //echo($_SESSION["user"]);
     } else {
-        echo "Désolé. Il y a eu un erreur avec le fichier.";
+        echo "Il y a eu un erreur avec le fichier.";
+    }
+    } else {
+        foreach($errors as $error) {
+            echo("$error");
+        }
     }
 }
+else{
+    echo("Désolé. Ce fichier est trop large.");
+}
+
+
+
+
+
+
+
+//Ancien Code, trop compliqué avec des bugs.
+
+
+//$target_dir = "./Images/";
+//$target_file = $target_dir . basename($_FILES["fichier"]["name"]);
+//$uploadOk = 1;
+//$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+//$imageFileType = strtolower($imageFileType);
+//// Check if image file is a actual image or fake image
+//if(isset($_POST["submit"])) {
+//    $check = getimagesize($_FILES["fichier"]["tmp_name"]);
+//    if($check !== false) {
+//        echo "Le fichier est une image - " . $check["mime"] . ".";
+//        $uploadOk = 1;
+//    } else {
+//        echo "Le fichier n'est pas une image.";
+//        $uploadOk = 0;
+//    }
+//}
+////Tout est mis en commentaire, car nous n'avons plus à vérifier si le fichier existe déjà.
+////Nous avons implémenté un random ID, donc les noms de fichier sont toujours différents.
+///*// Check if file already exists
+//if (file_exists($target_file) && $uploadOk == 1) {
+//    echo "Désolé. Ce fichier existe déjà.";
+//    $uploadOk = 0;
+//}*/
+//// Check file size
+//if ($_FILES["fichier"]["size"] > 3145728  && $uploadOk == 1) {
+//    echo "Désolé. Ce ficier est trop large.";
+//    $uploadOk = 0;
+//}
+//// Allow certain file formats
+//if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+//    && $imageFileType != "gif"  && $uploadOk == 1) {
+//    echo "Désolé. Seulement les fichiers JPG, JPEG, PNG & GIF sont acceptés.";
+//    $uploadOk = 0;
+//}
+//// Check if $uploadOk is set to 0 by an error
+//if ($uploadOk == 0) {
+//    echo "Désolé. Votre fichier n'as pas été téléversé.";
+//// if everything is ok, try to upload file
+//} else {
+//    $RandUniqId = uniqid("img_",false);
+//    if (move_uploaded_file($_FILES["fichier"]["tmp_name"],$target_dir.$RandUniqId /*$target_file*/)) //Si ca marche!
+//    {
+//        echo "Le fichier ". basename( $_FILES["fichier"]["name"]). " a été téléversé.";
+//        $Gestion->AddImageBd($RandUniqId,$_SESSION["user"],date("Y-m-d H:i:s"));
+//        //echo($_SESSION["user"]);
+//    } else {
+//        echo "Désolé. Il y a eu un erreur avec le fichier.";
+//    }
+//}
 ?>
 <br>
 <form action="index.php" method="post">

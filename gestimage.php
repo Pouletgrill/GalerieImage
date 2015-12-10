@@ -38,7 +38,7 @@ echo("
 ");
 $tableauCommentaire = $gestion->GetCommentaireFromImage($image);
 echo("
-    <table class='upload'>
+    <table class='upload' style='width: 100%'>
     <tr>
         <td>User</td>
         <td>Date</td>
@@ -55,7 +55,7 @@ for($i = 0; $i < count($tableauCommentaire);$i++) //TABLEAU
     echo("
             <td>".$tableauCommentaire[$i][2]."</td>
             <form action='gestimage.php' method='post'>
-                <td>
+                <td class='SupprimerButton'>
                     <input type='submit' value='Supprimer' name='SupCom'>
                     <input type='hidden' value='".$tableauCommentaire[$i][3]."' name='IdImagePost'>
                 </td>
@@ -68,22 +68,13 @@ for($i = 0; $i < count($tableauCommentaire);$i++) //TABLEAU
 echo("
 </table>
 </div>
+<br>
 ");
 
 //////////////////////////////
 echo("<hr>
 <div class='delete'>
 ");
-//Boutton Delete
-if ($imageUser == $_SESSION["user"] || $_SESSION["user"] == "admin")
-{
-    echo("
-    <form action='delete.php' method='get'>
-        <input type='hidden' name='image' value='". $image ."'>
-        <input type='submit' value='Supprimer'>
-    </form>
-");
-}
 
 //Boutton Commenter
 echo("
@@ -94,11 +85,26 @@ echo("
     </form>
 ");
 
+echo("<table><tr>");
+
+//Boutton Delete
+if ($imageUser == $_SESSION["user"] || $_SESSION["user"] == "admin")
+{
+    echo("
+    <form action='delete.php' method='get'>
+        <input type='hidden' name='image' value='". $image ."'>
+        <input type='submit' value='Supprimer'>
+    </form>&nbsp
+");
+}
+
 //Boutton Retour
 echo("
     <form action='index.php' method='post'>
         <input type='submit' value='Retour'>
     </form>
+        </tr>
+    </table>
     </div>
 ");
 
