@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 10 Décembre 2015 à 21:27
+-- Généré le :  Jeu 10 Décembre 2015 à 22:32
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -47,9 +47,23 @@ CREATE TABLE IF NOT EXISTS `image` (
   `IdImage` varchar(100) NOT NULL,
   `User` varchar(50) NOT NULL,
   `date` datetime NOT NULL,
+  `TitreImage` varchar(50) NOT NULL,
   PRIMARY KEY (`IdImage`),
   KEY `User` (`User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `image`
+--
+
+INSERT INTO `image` (`IdImage`, `User`, `date`, `TitreImage`) VALUES
+('img_5669e3369c95e', 't', '2015-12-10 15:40:22', 'image1'),
+('img_5669ec252ced2', 't', '2015-12-10 16:18:29', 'MunCHE.png'),
+('img_5669eccc0affa', 't', '2015-12-10 16:21:16', 'Obama-gets-sad.jpg'),
+('img_5669ee18da806', 't', '2015-12-10 16:26:48', 'Default'),
+('img_5669ee553fc3f', 't', '2015-12-10 16:27:49', ''),
+('img_5669ee69ee320', 't', '2015-12-10 16:28:09', 'HackMan'),
+('img_5669ee86dc400', 't', '2015-12-10 16:28:38', '');
 
 -- --------------------------------------------------------
 
@@ -81,7 +95,7 @@ INSERT INTO `usager` (`User`, `password`, `fullname`, `Ipadress`, `timeconnexion
 ('q', 'q', 'q', '::1', '2015-12-10 21:26:17'),
 ('qwerty', 'qwerty', 'qwerty', '::1', '2015-12-10 21:19:32'),
 ('singe', 'maqake', 'filamon', '::1', '2015-12-10 21:19:06'),
-('t', 't', 't', '::1', '2015-12-10 21:14:58'),
+('t', 't', 't', '::1', '2015-12-10 15:34:07'),
 ('Vazelyne', 'chien', 'Vazelyne', '::1', '2015-12-10 21:15:14'),
 ('YOUPI', 'singe', 'youpi', '::1', '2015-12-10 21:19:20');
 

@@ -181,7 +181,7 @@ class Gestion
     }
     function DelImageBd($FImageName)
     {
-        $sqlDelete = $this->bdd->prepare("DELETE FROM Image WHERE IdImage = ?");
+        $sqlDelete = $this->bdd->prepare("DELETE FROM Image WHERE IdImage=?");
 
         $sqlDelete->bindParam(1, $fImageName, PDO::PARAM_STR);
         $sqlDelete->execute();
