@@ -18,36 +18,34 @@ if($image[0] != '.')
             if($gestion->CommenterPhoto($image,$_SESSION["user"],date("Y-m-d H:i:s"),$message)) //si operation BD marche
             {
                 echo ("
-            <p style='color: blue'>le commentaire a été enregistré!</p>
+            <p style='color: blue'>Succès! Le commentaire a été enregistré!</p>
              ");
             }
             else //si operation BD marche pas
             {
                 echo ("
-            <p style='color: red'>Un probleme est survenue dans la BD</p>
+            <p style='color: red'>Erreur. Un probleme est survenue dans la BD</p>
              ");
             }
         }
         else
         {
             echo ("
-            <p style='color: red'>le commentaire est vide</p>
+            <p style='color: red'>Erreur. Le commentaire est vide.</p>
              ");
         }
         //echo("image:".$image." text:".$message);
     }
     else
     {
-        echo "<p style='color: red'>Ce fichier n'existe pas.</p>";
+        echo "<p style='color: red'>Erreur. Ce fichier n'existe pas.</p>";
     }
 }
 else
 {
-    echo "<p style='color: red'>Vous n'avez pas accès a commenter ce fichier.</p>";
+    echo "<p style='color: red'>Erreur. Vous n'avez pas accès a commenter ce fichier.</p>";
 }
 ?>
-    <br>
-    <br>
     <!--<form class="comment" action="index.php" method="post">
         <input type="submit" value="Retour">-->
     <FORM><INPUT class="comment" Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
