@@ -23,8 +23,9 @@ echo ("
     <img class='limg' src='./Images/". $image ."'>
 </div>
 <div class='comment'>
-    <p>Auteur: ".$imageUser."</p>
-    <p>Date de Création: ".$imageDate."</p>
+    <b>Auteur: ".$imageUser."</b>
+    <br>
+    Date de Création: ".$imageDate."
 </div>
 ");
 
@@ -32,15 +33,14 @@ echo ("
 echo("
 <hr>
 <div class='comment'>
-commentaire
 ");
 $tableauCommentaire = $gestion->GetCommentaireFromImage($image);
 echo("
-    <table border='1' style='width:100%'>
+    <table class='upload'>
     <tr>
         <td>User</td>
         <td>Date</td>
-        <td>Commentaire</td>
+        <td colspan='2'>Commentaire</td>
     </tr>
     ");
 for($i = 0; $i < count($tableauCommentaire);$i++) //TABLEAU
@@ -48,10 +48,10 @@ for($i = 0; $i < count($tableauCommentaire);$i++) //TABLEAU
     echo("
         <tr>
             <td>".$tableauCommentaire[$i][0]."</td>
-            <td>".$tableauCommentaire[$i][1]."</td>
-            <td>".$tableauCommentaire[$i][2]."</td>");
+            <td>".$tableauCommentaire[$i][1]."</td>");
     if ($tableauCommentaire[$i][0] == $_SESSION["user"]||$_SESSION["user"] =="admin")
     echo("
+            <td>".$tableauCommentaire[$i][2]."</td>
             <form action='gestimage.php' method='post'>
                 <td>
                     <input type='submit' value='Supprimer' name='SupCom'>
@@ -60,6 +60,8 @@ for($i = 0; $i < count($tableauCommentaire);$i++) //TABLEAU
             </form>
         </tr>
         ");
+    else
+       echo("<td colspan='2'>".$tableauCommentaire[$i][2]."</td>");
 }
 echo("
 </table>
@@ -105,6 +107,6 @@ function gestionPost($fgestion)
     if(isset($_POST["SupCom"]) && $_POST["SupCom"])
     {
         $fgestion->DelCommentaireBd($_POST["IdImagePost"]);
-        header("location: index.php");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

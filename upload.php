@@ -3,6 +3,7 @@ session_start();
 include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $Gestion = new Gestion();
+date_default_timezone_set('America/Montreal');
 
 include_once("headpage.php");
 
@@ -22,18 +23,18 @@ if(isset($_POST["submit"])) {
     }
 }
 // Check if file already exists
-if (file_exists($target_file)) {
+if (file_exists($target_file) && $uploadOk == 1) {
     echo "Désolé. Ce fichier existe déjà.";
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fichier"]["size"] > 4000000) {
+if ($_FILES["fichier"]["size"] > 4000000 && $uploadOk == 1) {
     echo "Désolé. Ce ficier est trop large.";
     $uploadOk = 0;
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+    && $imageFileType != "gif"  && $uploadOk == 1) {
     echo "Désolé. Seulement les fichiers JPG, JPEG, PNG & GIF sont acceptés.";
     $uploadOk = 0;
 }

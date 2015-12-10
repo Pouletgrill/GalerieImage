@@ -4,6 +4,7 @@ session_start();
 include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $Gestion = new Gestion();
+date_default_timezone_set('America/Montreal');
 
 //si qqun a check la box rester connecter
 if(isset($_COOKIE["userCookie"]))

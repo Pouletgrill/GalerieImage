@@ -3,6 +3,7 @@ session_start();
 include_once("BaseDeDonne.php");
 include_once("BDClass.php");
 $gestion = new Gestion();
+date_default_timezone_set('America/Montreal');
 
 include_once("headpage.php");
 $target_dir = "./Images/";
@@ -47,7 +48,8 @@ else
 ?>
     <br>
     <br>
-    <form class="comment" action="index.php" method="post">
-        <input type="submit" value="Retour">
+    <!--<form class="comment" action="index.php" method="post">
+        <input type="submit" value="Retour">-->
+    <FORM><INPUT class="comment" Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 <?php
 include_once("footpage.html");

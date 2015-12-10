@@ -19,7 +19,7 @@ $compteur = 0;
     <?php
     if ($fichiers !== FALSE)
     {
-        for ($i = 0; $i < sizeof($fichiers); $i++)
+        for ($i = sizeof($fichiers) - 1; $i >= 0; $i--)
         {
             $nomFichier = $fichiers[$i];
             if ($nomFichier[0] != "." && !empty($gestion->GetInfoFromImage($nomFichier)))
@@ -38,7 +38,7 @@ $compteur = 0;
                 $compteur++;
             }
 
-            if($i == (sizeof($fichiers)-1) && $compteur != 5)
+            if($i == (0) && $compteur != 5)
             {
                 echo "</tr>";
             }
